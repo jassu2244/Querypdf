@@ -1,0 +1,456 @@
+/* 
+ * QueryPDF Mobile UI Improvements
+ * Responsive design for phone/tablet views
+ * File: mobile-styles.css
+ */
+
+/* =============================================
+   MOBILE BREAKPOINTS & LAYOUT FIXES
+   ============================================= */
+
+/* Small phones (320px - 480px) */
+@media (max-width: 480px) {
+    /* Navigation */
+    nav {
+        padding: 0.75rem 1rem !important;
+    }
+    
+    nav h1 {
+        font-size: 1rem !important;
+    }
+    
+    /* Hero section */
+    #upload-section {
+        padding: 0.75rem 1rem !important;
+        padding-top: 1rem !important;
+    }
+    
+    #upload-section h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    #upload-section p {
+        font-size: 0.875rem !important;
+    }
+    
+    /* Status box */
+    #status, #onnx-status {
+        font-size: 0.75rem !important;
+        padding: 0.5rem !important;
+        margin: 0.5rem auto !important;
+    }
+    
+    /* Progress bar */
+    #indexing-progress-container {
+        padding: 0.5rem !important;
+        margin: 0.5rem auto !important;
+    }
+    
+    #indexing-progress-bar {
+        height: 20px !important;
+        margin: 0.25rem 0 !important;
+    }
+    
+    #indexing-progress-fill {
+        font-size: 0.625rem !important;
+    }
+    
+    /* Upload label */
+    #pdf-upload-label {
+        padding: 1.5rem !important;
+    }
+    
+    #pdf-upload-label svg {
+        width: 2rem !important;
+        height: 2rem !important;
+    }
+    
+    #upload-text {
+        font-size: 0.875rem !important;
+    }
+    
+    /* Split container - stack vertically on mobile */
+    .split-container {
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 0.75rem !important;
+        padding: 0 !important;
+    }
+    
+    /* PDF viewer section */
+    #pdf-viewer-section {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 70vh !important;
+        padding: 0.5rem !important;
+        border-radius: 0.375rem !important;
+    }
+    
+    #pdf-viewer-section h3 {
+        font-size: 1rem !important;
+    }
+    
+    /* PDF canvas */
+    #pdf-canvas {
+        max-width: 100% !important;
+        height: auto !important;
+        border-radius: 0.375rem !important;
+    }
+    
+    #pdf-canvas-container {
+        max-height: 60vh !important;
+        overflow: auto !important;
+    }
+    
+    .page-controls {
+        gap: 0.25rem !important;
+        margin-top: 0.5rem !important;
+    }
+    
+    .page-controls button {
+        padding: 0.4rem 0.6rem !important;
+        font-size: 0.75rem !important;
+    }
+    
+    #page-num {
+        font-size: 0.75rem !important;
+        min-width: auto !important;
+    }
+    
+    /* Chat panel */
+    #chat-panel {
+        width: 100% !important;
+        padding: 0.5rem !important;
+        border-radius: 0.375rem !important;
+    }
+    
+    /* Tab navigation */
+    [role="tablist"] {
+        gap: 0.5rem !important;
+        margin-bottom: 0.75rem !important;
+        border-bottom: 1px solid #e5e7eb !important;
+        flex-wrap: wrap !important;
+    }
+    
+    [role="tab"] {
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.875rem !important;
+        padding-bottom: 0.4rem !important;
+    }
+    
+    /* Panel content */
+    .panel {
+        padding: 0.5rem !important;
+        border-radius: 0.375rem !important;
+    }
+    
+    .panel h3 {
+        font-size: 1rem !important;
+    }
+    
+    .panel p {
+        font-size: 0.75rem !important;
+    }
+    
+    /* Input fields */
+    #question-input {
+        padding: 0.6rem !important;
+        font-size: 0.875rem !important;
+        border-radius: 0.375rem !important;
+    }
+    
+    /* Buttons */
+    button {
+        padding: 0.6rem !important;
+        font-size: 0.875rem !important;
+        border-radius: 0.375rem !important;
+        margin-top: 0.5rem !important;
+    }
+    
+    /* Output areas */
+    #answer-output, #summary-output, #quiz-container {
+        padding: 0.5rem !important;
+        font-size: 0.813rem !important;
+        min-height: 4rem !important;
+        border-radius: 0.375rem !important;
+        margin-top: 0.5rem !important;
+    }
+    
+    /* Quiz options */
+    .quiz-option {
+        padding: 0.5rem !important;
+        font-size: 0.75rem !important;
+        margin-top: 0.25rem !important;
+        border-radius: 0.375rem !important;
+    }
+    
+    /* Quiz feedback */
+    .quiz-feedback {
+        padding: 0.5rem !important;
+        font-size: 0.75rem !important;
+        margin-top: 0.5rem !important;
+        border-radius: 0.375rem !important;
+    }
+}
+
+/* Medium phones (481px - 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+    /* Navigation */
+    nav {
+        padding: 1rem 1.5rem !important;
+    }
+    
+    nav h1 {
+        font-size: 1.125rem !important;
+    }
+    
+    /* Hero section */
+    #upload-section {
+        padding: 1rem 1.5rem !important;
+    }
+    
+    #upload-section h2 {
+        font-size: 2rem !important;
+    }
+    
+    #upload-section p {
+        font-size: 0.95rem !important;
+    }
+    
+    /* Status box */
+    #status, #onnx-status {
+        font-size: 0.85rem !important;
+        max-width: 400px !important;
+    }
+    
+    /* Split container - stack on tablet */
+    .split-container {
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 1rem !important;
+    }
+    
+    /* PDF viewer section */
+    #pdf-viewer-section {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 60vh !important;
+        padding: 0.75rem !important;
+    }
+    
+    /* PDF canvas */
+    #pdf-canvas {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    #pdf-canvas-container {
+        max-height: 50vh !important;
+        overflow: auto !important;
+    }
+    
+    /* Chat panel */
+    #chat-panel {
+        width: 100% !important;
+        padding: 0.75rem !important;
+    }
+    
+    /* Tab navigation */
+    [role="tablist"] {
+        gap: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Input fields */
+    #question-input {
+        padding: 0.65rem !important;
+        font-size: 0.95rem !important;
+    }
+    
+    /* Output areas */
+    #answer-output, #summary-output, #quiz-container {
+        min-height: 5rem !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Desktop/Large screens (769px+) - Keep existing layout */
+@media (min-width: 769px) {
+    .split-container {
+        display: flex !important;
+        flex-direction: row !important;
+        height: calc(100vh - 200px) !important;
+    }
+    
+    #pdf-viewer-section {
+        width: 55% !important;
+    }
+    
+    #chat-panel {
+        width: 45% !important;
+    }
+}
+
+/* =============================================
+   MOBILE-SPECIFIC IMPROVEMENTS
+   ============================================= */
+
+/* Better touch targets for mobile */
+@media (max-width: 768px) {
+    button, input, [role="button"], .quiz-option {
+        min-height: 44px !important; /* iOS recommended touch size */
+        min-width: 44px !important;
+    }
+    
+    button, [role="tab"] {
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}
+
+/* Prevent zoom on input focus (iOS) */
+@media (max-width: 768px) {
+    input, textarea, select {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+}
+
+/* Smooth scrolling on mobile */
+@media (max-width: 768px) {
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    #pdf-viewer-section, #chat-panel, .panel {
+        overflow-y: auto;
+        scroll-behavior: smooth;
+    }
+}
+
+/* Mobile keyboard handling */
+@media (max-width: 768px) {
+    #question-input:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+    }
+    
+    input:focus, textarea:focus {
+        outline: 2px solid #3b82f6;
+    }
+}
+
+/* Better spacing on mobile for readability */
+@media (max-width: 480px) {
+    .tab-content-wrapper {
+        gap: 0.5rem !important;
+    }
+    
+    .panel > * + * {
+        margin-top: 0.5rem !important;
+    }
+    
+    button + button {
+        margin-top: 0.5rem !important;
+    }
+}
+
+/* Hide unnecessary elements on very small screens */
+@media (max-width: 320px) {
+    #onnx-status {
+        display: none !important;
+    }
+    
+    nav h1 {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* =============================================
+   DARK MODE SUPPORT (Optional)
+   ============================================= */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0f172a;
+        color: #f1f5f9;
+    }
+    
+    #pdf-viewer-section, #chat-panel, .panel, 
+    #status, #answer-output, #summary-output, #quiz-container {
+        background-color: #1e293b !important;
+        color: #f1f5f9 !important;
+    }
+    
+    input, textarea, .quiz-option {
+        background-color: #1e293b !important;
+        color: #f1f5f9 !important;
+        border-color: #334155 !important;
+    }
+    
+    button {
+        background-color: #3b82f6 !important;
+    }
+}
+
+/* =============================================
+   LANDSCAPE ORIENTATION (Mobile)
+   ============================================= */
+
+@media (max-height: 600px) and (orientation: landscape) {
+    nav {
+        padding: 0.5rem 1rem !important;
+    }
+    
+    #upload-section, #chat-section {
+        padding: 0.5rem !important;
+    }
+    
+    #pdf-canvas-container {
+        max-height: 80vh !important;
+    }
+    
+    button {
+        padding: 0.4rem !important;
+        font-size: 0.75rem !important;
+    }
+}
+
+/* =============================================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================================= */
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+    #status, #answer-output, .quiz-option {
+        border-width: 2px !important;
+    }
+    
+    button {
+        border-width: 2px !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =============================================
+   PRINT STYLES
+   ============================================= */
+
+@media print {
+    nav, #upload-section, button, [role="tablist"] {
+        display: none !important;
+    }
+    
+    #pdf-viewer-section, #answer-output, #summary-output {
+        page-break-inside: avoid !important;
+        box-shadow: none !important;
+    }
+}

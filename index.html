@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QueryPDF</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/mobile-styles.css?v=2" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="bg-white text-gray-900 min-h-screen">
+    <!-- Top Navigation Bar -->
+    <nav class="w-full p-6 sm:p-8 max-w-6xl mx-auto">
+      <h1 class="text-lg font-semibold flex items-center gap-2">
+        <img src="logo.png" alt="QueryPDF Logo" width="24" height="24" />
+        QueryPDF
+      </h1>
+    </nav>
+
+    <!-- File Upload / Hero Section -->
+    <div id="upload-section" class="max-w-6xl mx-auto px-6 sm:px-8 py-16 text-center">
+      <h2 class="text-4xl sm:text-5xl font-bold flex items-center justify-center gap-3">
+        Private PDF Chat AI
+        <img src="logo.png" alt="QueryPDF Logo" width="48" height="48" />
+      </h2>
+      <p class="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
+        Ask questions to your documents. This app runs 100% in your browser. No data ever leaves your device.
+      </p>
+
+      <!-- Status Box -->
+      <div
+        id="status"
+        class="mt-8 max-w-md mx-auto text-center bg-blue-50 border border-blue-200 text-blue-700 px-4 py-3 rounded-lg text-sm"
+        role="alert">
+        Loading AI model... (This happens once)
+      </div>
+
+      <!-- Progress bar for PDF to JSON conversion -->
+      <div id="indexing-progress-container" class="mt-4 max-w-md mx-auto">
+        <div class="text-sm font-semibold text-blue-700 mb-2">Converting PDF to JSON...</div>
+        <div id="indexing-progress-bar">
+          <div id="indexing-progress-fill">0%</div>
+        </div>
+        <div id="indexing-eta" class="text-xs text-gray-500 mt-1"></div>
+      </div>
+
+      <!-- File Upload Area -->
+      <div class="mt-8">
+        <label id="pdf-upload-label" for="pdf-upload" class="flex flex-col items-center justify-center p-8 rounded-lg">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-10 h-10 text-gray-500">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+          </svg>
+          <span id="upload-text" class="mt-2 font-semibold text-blue-600">Click to upload your PDF</span>
+          <span class="text-sm text-gray-500">Your data never leaves your device</span>
+        </label>
+        <input type="file" id="pdf-upload" accept="application/pdf" class="hidden" disabled />
+      </div>
+
+      <!-- Features Section -->
+      <div class="mt-16 py-12">
+        <h3 class="text-2xl font-bold text-center mb-12">Why Choose QueryPDF?</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Feature 1: Privacy -->
+          <div
+            class="flex flex-col items-center p-6 bg-white border border-gray-200 rounded-xl hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 text-green-600">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h4 class="font-semibold text-lg mb-2">100% Private</h4>
+            <p class="text-gray-600 text-sm text-center">
+              Your PDFs never leave your device. All processing happens locally in your browser.
+            </p>
+          </div>
+
+          <!-- Feature 2: No Signup -->
+          <div
+            class="flex flex-col items-center p-6 bg-white border border-gray-200 rounded-xl hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 text-blue-600">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h4 class="font-semibold text-lg mb-2">No Sign Up</h4>
+            <p class="text-gray-600 text-sm text-center">
+              Start using immediately. No registration, no login, no cookies required.
+            </p>
+          </div>
+
+          <!-- Feature 3: Fast & Free -->
+          <div
+            class="flex flex-col items-center p-6 bg-white border border-gray-200 rounded-xl hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 text-purple-600">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h4 class="font-semibold text-lg mb-2">Fast & Free</h4>
+            <p class="text-gray-600 text-sm text-center">
+              Instant AI analysis with no limits. Powered by cutting-edge AI models.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Capabilities Section -->
+      <div class="mt-16 py-12 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl px-8">
+        <h3 class="text-2xl font-bold text-center mb-12">Powerful Capabilities</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <span class="flex items-center justify-center h-10 w-10 rounded-md bg-blue-600 text-white">📄</span>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Extract Summaries</h4>
+              <p class="text-sm text-gray-600">Get instant summaries of any PDF document, no matter the length.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <span class="flex items-center justify-center h-10 w-10 rounded-md bg-blue-600 text-white">❓</span>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Ask Questions</h4>
+              <p class="text-sm text-gray-600">
+                Ask specific questions and get accurate answers from your PDF content.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <span class="flex items-center justify-center h-10 w-10 rounded-md bg-blue-600 text-white">🎯</span>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Generate Quizzes</h4>
+              <p class="text-sm text-gray-600">
+                Create interactive quizzes to test your understanding of the material.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <span class="flex items-center justify-center h-10 w-10 rounded-md bg-blue-600 text-white">⚡</span>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Instant Results</h4>
+              <p class="text-sm text-gray-600">Get results in seconds with AI-powered analysis running locally.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <span class="flex items-center justify-center h-10 w-10 rounded-md bg-blue-600 text-white">📱</span>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Mobile Friendly</h4>
+              <p class="text-sm text-gray-600">Works perfectly on phones, tablets, and desktop browsers.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <span class="flex items-center justify-center h-10 w-10 rounded-md bg-blue-600 text-white">🔐</span>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-1">Secure & Safe</h4>
+              <p class="text-sm text-gray-600">
+                No data storage. Your documents are processed and forgotten instantly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="mt-16 py-16 text-center">
+        <h3 class="text-3xl font-bold mb-4">Ready to Chat with Your PDFs?</h3>
+        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          Upload any PDF document and start asking questions powered by AI. Your data stays private and secure.
+        </p>
+        <button
+          class="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-lg gap-2"
+          onclick="document.getElementById('pdf-upload-label').click()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          Get Started Now
+        </button>
+      </div>
+
+      <!-- Footer -->
+      <div class="mt-16 pt-12 border-t border-gray-200 text-center text-gray-600 pb-8">
+        <p class="text-sm">Built with 💙 | Open Source | Privacy First | No Analytics</p>
+        <p class="text-xs text-gray-500 mt-2">© 2025 QueryPDF. Your data, your device, your control.</p>
+      </div>
+    </div>
+
+    <!-- Chat Section (Hidden by default) -->
+    <div id="chat-section" class="hidden mx-auto px-6 sm:px-8 py-8">
+      <div class="split-container">
+        <!-- Left: PDF Viewer -->
+        <aside id="pdf-viewer-section">
+          <h3 class="text-md font-semibold flex-shrink-0">PDF Viewer</h3>
+          <div id="pdf-canvas-container">
+            <canvas id="pdf-canvas"></canvas>
+          </div>
+          <div class="page-controls">
+            <button id="prev-page" class="px-3 py-1 bg-gray-100 rounded-md hover:bg-gray-200">Previous</button>
+            <div id="page-num" class="text-sm text-gray-600 min-w-[100px] text-center">Page 0 / 0</div>
+            <button id="next-page" class="px-3 py-1 bg-gray-100 rounded-md hover:bg-gray-200">Next</button>
+          </div>
+        </aside>
+
+        <!-- Right: Chat Panel with Tabs -->
+        <div id="chat-panel">
+          <!-- Tab Navigation -->
+          <div
+            role="tablist"
+            aria-label="Document modes"
+            class="flex space-x-6 border-b border-gray-200 mb-4 flex-shrink-0">
+            <button
+              id="tab-summary"
+              role="tab"
+              aria-controls="summary-content"
+              aria-selected="false"
+              class="pb-3 text-gray-600 hover:text-gray-900 transition-all font-medium">
+              Summary
+            </button>
+            <button
+              id="tab-qa"
+              role="tab"
+              aria-controls="qa-content"
+              aria-selected="true"
+              class="pb-3 border-b-2 border-blue-600 text-blue-600 transition-all font-medium">
+              Q&A
+            </button>
+            <button
+              id="tab-quiz"
+              role="tab"
+              aria-controls="quiz-content"
+              aria-selected="false"
+              class="pb-3 text-gray-600 hover:text-gray-900 transition-all font-medium">
+              Quiz
+            </button>
+          </div>
+
+          <!-- Tab Content Container (scrollable) -->
+          <div class="tab-content-wrapper">
+            <!-- Summary Content -->
+            <div id="summary-content" role="tabpanel" aria-labelledby="tab-summary" class="hidden panel">
+              <h3 class="text-lg font-semibold flex-shrink-0">Summary</h3>
+              <p class="text-sm text-gray-600 mt-2 flex-shrink-0">Generate a summary of your PDF document.</p>
+              <button
+                id="generate-summary-button"
+                class="mt-4 w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition-all flex-shrink-0">
+                Generate Summary
+              </button>
+              <div
+                id="summary-output"
+                class="mt-4 w-full p-4 min-h-[6rem] bg-gray-50 border border-gray-200 rounded-lg overflow-y-auto flex-1">
+                <!-- Summary output will appear here -->
+              </div>
+            </div>
+
+            <!-- Q&A Content (default active) -->
+            <div id="qa-content" role="tabpanel" aria-labelledby="tab-qa" class="panel">
+              <!-- Column 1: Ask a Question -->
+              <div class="flex-shrink-0">
+                <h3 class="text-lg font-semibold">Ask a Question</h3>
+                <p class="text-sm text-gray-600 mt-2">Ask a specific question about the PDF content.</p>
+                <input
+                  type="text"
+                  id="question-input"
+                  class="mt-4 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="e.g., What was the main conclusion?" />
+                <button
+                  id="ask-button"
+                  class="mt-3 w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition-all disabled:bg-gray-400 disabled:cursor-not-allowed">
+                  Ask
+                </button>
+              </div>
+
+              <!-- Column 2: Answer Area -->
+              <div class="mt-6 flex-1 overflow-y-auto">
+                <h3 class="text-lg font-semibold flex-shrink-0">AI Answer</h3>
+                <div
+                  id="answer-output"
+                  class="mt-2 w-full p-4 min-h-[6rem] bg-gray-50 border border-gray-200 rounded-lg overflow-y-auto"
+                  aria-live="polite">
+                  Ask a question to get an answer from the PDF.
+                </div>
+              </div>
+            </div>
+
+            <!-- Quiz Content -->
+            <div id="quiz-content" role="tabpanel" aria-labelledby="tab-quiz" class="hidden panel">
+              <h3 class="text-lg font-semibold flex-shrink-0">Quiz</h3>
+              <p class="text-sm text-gray-600 mt-2 flex-shrink-0">Test your knowledge with auto-generated questions.</p>
+              <button
+                id="generate-quiz-button"
+                class="mt-4 w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition-all flex-shrink-0">
+                Generate Quiz
+              </button>
+              <div
+                id="quiz-container"
+                class="mt-4 w-full p-4 min-h-[6rem] bg-gray-50 border border-gray-200 rounded-lg overflow-y-auto flex-1">
+                <!-- Quiz UI will appear here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    
+    <!-- Application JavaScript (ES6 Module) -->
+    <script type="module" src="assets/js/app.js"></script>
+  </body>
+</html>

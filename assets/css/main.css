@@ -1,0 +1,216 @@
+/* IBM Plex Mono font family */
+body {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* File upload button styling */
+#pdf-upload-label {
+  border: 2px dashed #9ca3af; /* gray-400 */
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#pdf-upload-label:hover {
+  border-color: #3b82f6; /* blue-500 */
+  background-color: #f9fafb; /* gray-50 */
+}
+
+/* Split layout for PDF viewer + chat */
+.split-container {
+  display: flex;
+  gap: 1.5rem;
+  align-items: stretch;
+  height: calc(100vh - 200px);
+}
+
+/* Panel base styles (used for viewer, chat, and content panels) */
+#pdf-viewer-section,
+#chat-panel,
+.panel {
+  background: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+#pdf-viewer-section {
+  width: 55%;
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#chat-panel {
+  width: 45%;
+  padding: 0.75rem;
+  overflow-y: auto;
+}
+
+.panel {
+  padding: 0.75rem;
+  border-radius: 8px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* PDF canvas and controls */
+#pdf-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto !important;
+  height: auto !important;
+  flex-shrink: 0;
+  display: block;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  border-radius: 8px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  object-fit: contain;
+}
+
+#pdf-canvas-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  width: 100%;
+  min-height: 0;
+}
+
+.page-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+  padding: 0.5rem;
+}
+
+.page-controls button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+.page-controls button:hover:not(:disabled) {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+}
+
+.page-controls button:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.page-controls #page-num {
+  color: #1f2937;
+  font-size: 0.95rem;
+  font-weight: 600;
+  min-width: 120px;
+  text-align: center;
+  padding: 0.5rem;
+  background: #f9fafb;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Tab content wrapper */
+.tab-content-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Quiz styling */
+.quiz-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+.quiz-option.selected {
+  background: #e0f2fe;
+  border-color: #7dd3fc;
+}
+
+/* Quiz feedback styling */
+.quiz-feedback {
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  border-left: 4px solid;
+}
+
+.quiz-feedback.correct {
+  background: #ecfdf5;
+  border-color: #10b981;
+}
+
+.quiz-feedback.incorrect {
+  background: #fff1f2;
+  border-color: #fb7185;
+  color: #fee2e2;
+}
+
+/* Chat section width */
+#chat-section {
+  max-width: 100% !important;
+  width: 100%;
+}
+
+/* Progress bar styles */
+#indexing-progress-container {
+  display: none;
+  padding: 1rem;
+  background: #f0f9ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+#indexing-progress-container.visible {
+  display: block;
+}
+
+#indexing-progress-bar {
+  width: 100%;
+  height: 24px;
+  background: #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+
+#indexing-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  width: 0%;
+  transition: width 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
